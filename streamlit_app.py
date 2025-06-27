@@ -2,9 +2,9 @@ import streamlit as st
 import oracledb
 
 # Database connection details
-DB_USER = "TM39706_ELIASAPH"
-DB_PASSWORD = "Mar@2025"
-DB_DSN = "172.20.3.66:1521/TMFORCE"  # Example: "192.168.1.100:1521/orclpdb1"
+DB_USER = "xxx"
+DB_PASSWORD = "xxx"
+DB_DSN = "xxx"  # Example: "192.168.1.100:1521/orclpdb1"
 
 def search_database(search_keyword):
     try:
@@ -57,3 +57,27 @@ if st.button("Search"):
             # Display results as a table
             st.write("### Search Results")
             st.table(result)
+
+"""
+ssh tunneling
+---
+requirement: sshtunnel
+---
+from sshtunnel import SSHTunnelForwarder
+import oracledb
+
+with SSHTunnelForwarder(
+    ('jump_host_ip', 22),
+    ssh_username='jump_host_user',
+    ssh_password='jump_host_password',  # or use SSH key for security
+    remote_bind_address=('db_host', 1521),
+    local_bind_address=('localhost', 1522)
+) as tunnel:
+    connection = oracledb.connect(
+        user='db_user',
+        password='db_password',
+        dsn='localhost:1522/service_name'
+    )
+    # your queries here
+    connection.close()
+"""
