@@ -2,9 +2,9 @@ import streamlit as st
 import oracledb
 
 # Database connection details
-DB_USER = "your_username"
-DB_PASSWORD = "your_password"
-DB_DSN = "host:port/service_name"  # Example: "192.168.1.100:1521/orclpdb1"
+DB_USER = "TM39706_ELIASAPH"
+DB_PASSWORD = "Mar@2025"
+DB_DSN = "172.20.3.66:1521/TMFORCE"  # Example: "192.168.1.100:1521/orclpdb1"
 
 def search_database(search_keyword):
     try:
@@ -18,9 +18,9 @@ def search_database(search_keyword):
         
         # Example SQL query (adjust table and column names)
         sql_query = """
-            SELECT column1, column2
-            FROM your_table
-            WHERE column1 LIKE :search_keyword
+            SELECT *
+            FROM tmforce.fl_order flo
+            WHERE flo.order_number LIKE :search_keyword
         """
         cursor.execute(sql_query, {'search_keyword': f'%{search_keyword}%'})
         
