@@ -2,9 +2,9 @@ import streamlit as st
 import cx_Oracle
 
 # Database connection details
-DB_USER = "TM39706_ELIASAPH"
-DB_PASSWORD = "Mar@2025"
-DB_DSN = "172.20.3.66:1521/TMFORCE"  # Example: "192.168.1.100:1521/orclpdb1"
+DB_USER = "xxx"
+DB_PASSWORD = "xxx"
+DB_DSN = "xxx"  # Example: "192.168.1.100:1521/orclpdb1"
 
 def search_database(search_keyword):
     try:
