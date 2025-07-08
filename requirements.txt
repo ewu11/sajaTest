@@ -1,3 +1,3 @@
 streamlit
 oracledb
-oracle_cx
+cx_oracle
