@@ -1,8 +1,8 @@
 import streamlit as st
-import cx_Oracle
+import oracledb
 
 # Streamlit page setup
-st.title("Oracle Database Connection Checker")
+st.title("Oracle Database Connection Checker (oracledb Thin Mode)")
 
 # Input fields for credentials and DB details
 user = st.text_input("Username")
@@ -18,8 +18,8 @@ if st.button("Check Connection"):
     else:
         dsn = f"{host}:{port}/{service}"
         try:
-            # Attempt connection
-            conn = cx_Oracle.connect(user, password, dsn)
+            # Attempt connection using oracledb in thin mode
+            conn = oracledb.connect(user=user, password=password, dsn=dsn)
             st.success("✅ Connection successful!")
 
             # Execute simple test query
@@ -32,7 +32,7 @@ if st.button("Check Connection"):
             cursor.close()
             conn.close()
 
-        except cx_Oracle.DatabaseError as e:
-            error, = e.args
+        except Exception as e:
+            # Handle connection failure
             st.error("❌ Connection failed.")
-            st.code(f"Oracle-Error-Code: {error.code}\nOracle-Error-Message: {error.message}")
+            st.code(str(e))
